@@ -1,7 +1,7 @@
 import errno
 import os
 import shutil
-import tempfile
+# import tempfile
 
 import gnupg
 
@@ -34,7 +34,8 @@ class Cryptor(object):
     def __init__(self, path):
         self.path = path
         self.keys_path = os.path.join(path, ".keys")
-        self._homedir = tempfile.mkdtemp()
+        # self._homedir = tempfile.mkdtemp()
+	self._homedir = os.path.join(path, ".passpie", "temp")
         self._gpg = gnupg.GPG(binary=self._binary, homedir=self._homedir)
 
     def __enter__(self):
